@@ -1,6 +1,7 @@
 package com.m.w.vpnservice.vpn.proxy;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.m.w.vpnservice.vpn.ProxyConfig;
 import com.m.w.vpnservice.vpn.nat.NatSession;
@@ -15,6 +16,8 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by zengzheying on 15/12/30.
@@ -141,6 +144,7 @@ public class TcpProxyServer implements Runnable {
 				remoteTunnel.setBrotherTunnel(localTunnel);
 				localTunnel.setBrotherTunnel(remoteTunnel);
 				remoteTunnel.connect(destAddress); //Start connecting
+//				Log.d(TAG, "onAccepted: "+destAddress.getAddress()+" localTunnel.isHttpsRequest():"+localTunnel.isHttpsRequest());
 			} else {
 				short portKey = (short) localChannel.socket().getPort();
 				NatSession session = NatSessionManager.getSession(portKey);

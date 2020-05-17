@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">VpnService</string>
+    <string name="app_name">解忧-家长端</string>
+<!--    <string name="app_name">解忧-学生端</string>-->
 </resources>

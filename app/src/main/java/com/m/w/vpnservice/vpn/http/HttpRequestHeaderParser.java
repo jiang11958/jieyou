@@ -1,6 +1,7 @@
 package com.m.w.vpnservice.vpn.http;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.m.w.vpnservice.vpn.nat.NatSession;
 import com.m.w.vpnservice.vpn.tcpip.CommonMethods;
@@ -32,6 +33,8 @@ public class HttpRequestHeaderParser {
 		} catch (Exception ex) {
 
 		}
+		Log.d("jeo", "parseHttpRequestHeader: session.RemoteHost: "+session.RemoteHost+" "+ session.IsHttpsSession);
+
 	}
 
 	public static void getHttpHostAndRequestUrl(NatSession session, byte[] buffer, int offset, int count) {
@@ -74,6 +77,7 @@ public class HttpRequestHeaderParser {
 			} else {
 				session.RequestUrl = url;
 			}
+//			Log.d("jeo", "paresRequestLine: "+session.RequestUrl);
 		}
 	}
 
