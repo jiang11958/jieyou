@@ -204,9 +204,9 @@ public class FirewallVpnService extends VpnService implements Runnable {
             if (remoteHosts == null) {
                 remoteHosts = new HashSet<>();
             }
-            if (session != null && !remoteHosts.contains(session.RemoteHost)) {
+            if (session != null && !remoteHosts.contains(session.RemoteHost) ) {
                 Intent intent = new Intent("CAPTURE_DOMAIN");
-                intent.putExtra("DOMAIN", session.RemoteHost);
+                intent.putExtra("DOMAIN", session.IsHttpsSession ? "https://" + session.RemoteHost : "http://" + session.RemoteHost);
                 //发送广播
                 LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(intent);
                 Log.d(TAG, "onIPPacketReceived: 发送广播");
@@ -239,7 +239,7 @@ public class FirewallVpnService extends VpnService implements Runnable {
         builder.addAddress(ipAddress.Address, ipAddress.PrefixLength);
 
         builder.addRoute("0.0.0.0", 0);
-		/*/Intent intent = new Intent(this, MainActivity.class);
+		/*/Intent intent = new Intent(this, IndexActivity.class);
 		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 		builder.setConfigureIntent(pendingIntent);/*/
         builder.setSession("Easy Firewall");
